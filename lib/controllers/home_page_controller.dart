@@ -1,12 +1,7 @@
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 class HomePageController extends GetxController {
-  int _selectedIndex = 0;
+  var currentIndex = 0.obs;
 
-  int get selectedIndex => _selectedIndex;
-
-  void changeIndex(int index) {
-    _selectedIndex = index;
-    update();
-  }
+  void changePage(int index) => currentIndex.value = index;
 }

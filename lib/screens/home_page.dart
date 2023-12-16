@@ -10,64 +10,71 @@ import 'package:my_app/screens/password/password_list.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  HomePageController controller = Get.put(HomePageController());
+  final HomePageController controller = Get.put(HomePageController());
 
-  List pages = [
-    const PasswordList(),
-    const GroupsList(),
-    const Logs(),
-    const UserList()
-  ];
+  List<Widget> get pages =>
+      const <Widget>[PasswordList(), UserList(), GroupsList(), Logs()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Home Page'),
-      ),
-      body: pages[controller.selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: controller.selectedIndex,
-        onTap: controller.changeIndex,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Image(
-              image: AssetImage('assets/icons/004-padlock.png'),
-              width: 24,
-              height: 24,
-            ),
-            label: 'Passwords',
-          ),
-          BottomNavigationBarItem(
-            icon: Image(
-                image: AssetImage(
-                  'assets/icons/001-person.png',
+      body: Obx(() => IndexedStack(
+            index: controller.currentIndex.value,
+            children: pages,
+          )),
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
+            currentIndex: controller.currentIndex.value,
+            onTap: (int index) {
+              controller.changePage(index);
+            },
+            selectedLabelStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.deepPurple,
+                fontSize: 12),
+            selectedItemColor: Colors.deepPurple,
+            unselectedItemColor: Colors.black,
+            unselectedLabelStyle: const TextStyle(
+                fontWeight: FontWeight.normal,
+                color: Colors.black,
+                fontSize: 12),
+            items: const [
+              BottomNavigationBarItem(
+                icon: Image(
+                  image: AssetImage('assets/icons/004-padlock.png'),
+                  width: 24,
+                  height: 24,
                 ),
-                width: 24,
-                height: 24),
-            label: 'Users',
-          ),
-          BottomNavigationBarItem(
-            icon: Image(
-                image: AssetImage(
-                  'assets/icons/010-people.png',
-                ),
-                width: 24,
-                height: 24),
-            label: 'Groups',
-          ),
-          BottomNavigationBarItem(
-            icon: Image(
-                image: AssetImage(
-                  'assets/icons/009-list.png',
-                ),
-                width: 24,
-                height: 24),
-            label: 'logs',
-          ),
-        ],
-      ),
+                label: 'Passwords',
+              ),
+              BottomNavigationBarItem(
+                icon: Image(
+                    image: AssetImage(
+                      'assets/icons/001-person.png',
+                    ),
+                    width: 24,
+                    height: 24),
+                label: 'Users',
+              ),
+              BottomNavigationBarItem(
+                icon: Image(
+                    image: AssetImage(
+                      'assets/icons/010-people.png',
+                    ),
+                    width: 24,
+                    height: 24),
+                label: 'Groups',
+              ),
+              BottomNavigationBarItem(
+                icon: Image(
+                    image: AssetImage(
+                      'assets/icons/009-list.png',
+                    ),
+                    width: 24,
+                    height: 24),
+                label: 'Logs',
+              ),
+            ],
+          )),
     );
   }
 }
