@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
   final HomePageController controller = Get.put(HomePageController());
 
   List<Widget> get pages =>
-      const <Widget>[PasswordList(), UserList(), GroupsList(), Logs()];
+      <Widget>[PasswordList(), UserList(), GroupsList(), Logs()];
 
   @override
   Widget build(BuildContext context) {

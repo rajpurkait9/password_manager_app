@@ -37,7 +37,7 @@ class AppPages {
     // GetPage(name: Routes.groupDetail, page: () => const GroupDetail()),
     // GetPage(name: Routes.groupAdd, page: () => const GroupAdd()),
     // GetPage(name: Routes.groupEdit, page: () => const GroupEdit()),
-    GetPage(name: Routes.userList, page: () => const UserList()),
+    GetPage(name: Routes.userList, page: () => UserList()),
     // GetPage(name: Routes.userDetail, page: () => const UserDetail()),
     // GetPage(name: Routes.userAdd, page: () => const UserAdd()),
     // GetPage(name: Routes.userEdit, page: () => const UserEdit()),
