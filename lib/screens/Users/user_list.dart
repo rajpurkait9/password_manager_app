@@ -28,19 +28,51 @@ class UserList extends StatelessWidget {
                 } else {
                   return Column(
                     children: [
-                      ElevatedButton(onPressed: (){
-                        userPageController.getUser();
-                      }, child: Text("call api")),
                       ListView.builder(
                           shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: userPageController.userList.length,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              title: Text(
-                                  userPageController.userList[index].name ?? ''),
-                              subtitle: Text(
-                                  userPageController.userList[index].email ?? ''),
-                            );
+                                title: Text(
+                                    userPageController.userList[index].name ??
+                                        ''),
+                                subtitle: Text(
+                                    userPageController.userList[index].email ??
+                                        ''),
+                                trailing: IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                                title:
+                                                    const Text('Delete User'),
+                                                content: const Text(
+                                                    'Are you sure you want to delete this user?'),
+                                                actions: [
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        Get.snackbar("deleted", "user deleted successfully");
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          const Text('Cancel')),
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        // userPageController
+                                                        //     .deleteUser(index);
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          const Text('Confirm'))
+                                                ],
+                                              ));
+                                    },
+                                    icon: const Icon(Icons.delete))
+                                // trailing:
+                                );
                           }),
                     ],
                   );

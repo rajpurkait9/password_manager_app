@@ -27,6 +27,7 @@ class HomePage extends StatelessWidget {
             currentIndex: controller.currentIndex.value,
             onTap: (int index) {
               controller.changePage(index);
+              if (index == 1) Get.find<UserPageController>().getUser();
             },
             selectedLabelStyle: const TextStyle(
                 fontWeight: FontWeight.bold,

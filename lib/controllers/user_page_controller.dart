@@ -24,7 +24,6 @@ class UserPageController extends GetxController {
     getUser();
   }
 
-  // http.Client client = http.Client();
   // get user data
   Future<void> getUser() async {
     try {
@@ -33,12 +32,10 @@ class UserPageController extends GetxController {
         headers: {"Content-Type": "application/json"},
       );
       var data = json.decode(response.body);
-      // print(data.runtimeType.toString() + "somethtimn");
       userList
           .addAll((data as List).map((e) => GetAllUserSingleModel.fromJson(e)));
-      // print('is coming properly ${userList.length}');
     } catch (e) {
-      // print("$e something went wrong");
+      Get.snackbar("error", "something went wrong");
       throw e;
     }
   }
