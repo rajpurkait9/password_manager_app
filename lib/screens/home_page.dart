@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
 import 'package:my_app/controllers/home_page_controller.dart';
+import 'package:my_app/controllers/user_page_controller.dart';
 import 'package:my_app/screens/Groups/groups_list.dart';
 import 'package:my_app/screens/Logs/logs_view.dart';
 import 'package:my_app/screens/Users/user_list.dart';

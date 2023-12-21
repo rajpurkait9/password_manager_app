@@ -8,14 +8,47 @@ class UserList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print("${userPageController.userList.map((e) => e.toJson())}  somethign is wrong");
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text('User List'),
         ),
         body: Container(
-          child: const Text('User List'),
-        ),
+            child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Obx(() {
+                if (userPageController.isLoading.value) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      ElevatedButton(onPressed: (){
+                        userPageController.getUser();
+                      }, child: Text("call api")),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: userPageController.userList.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(
+                                  userPageController.userList[index].name ?? ''),
+                              subtitle: Text(
+                                  userPageController.userList[index].email ?? ''),
+                            );
+                          }),
+                    ],
+                  );
+                }
+              })
+            ],
+          ),
+        )),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               showDialog(
