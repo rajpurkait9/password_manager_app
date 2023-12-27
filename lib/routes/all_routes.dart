@@ -29,7 +29,7 @@ class AppPages {
   static final pages = [
     GetPage(name: Routes.home, page: () => HomePage()),
     // GetPage(name: Routes.login, page: () => const LoginPage()),
-    GetPage(name: Routes.passwordList, page: () => const PasswordList()),
+    GetPage(name: Routes.passwordList, page: () => PasswordList()),
     // GetPage(name: Routes.passwordDetail, page: () => const PasswordDetail()),
     // GetPage(name: Routes.passwordAdd, page: () => const PasswordAdd()),
     // GetPage(name: Routes.passwordEdit, page: () => const PasswordEdit()),

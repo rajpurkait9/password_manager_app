@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
 import 'package:my_app/controllers/home_page_controller.dart';
+import 'package:my_app/controllers/password_controller.dart';
 import 'package:my_app/controllers/user_page_controller.dart';
 import 'package:my_app/screens/Groups/groups_list.dart';
 import 'package:my_app/screens/Logs/logs_view.dart';
@@ -12,6 +13,7 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final HomePageController controller = Get.put(HomePageController());
+  final PasswordController passwordController = Get.put(PasswordController());
 
   List<Widget> get pages =>
       <Widget>[PasswordList(), UserList(), GroupsList(), Logs()];
@@ -28,6 +30,7 @@ class HomePage extends StatelessWidget {
             onTap: (int index) {
               controller.changePage(index);
               if (index == 1) Get.find<UserPageController>().getUser();
+              if (index == 0) passwordController.getAllPassword();
             },
             selectedLabelStyle: const TextStyle(
                 fontWeight: FontWeight.bold,
