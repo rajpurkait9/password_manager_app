@@ -34,99 +34,81 @@ class UserList extends StatelessWidget {
                           itemCount: userPageController.userList.length,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              onTap: () {
-                                Get.bottomSheet(
-                                  Container(
-                                    height: 200,
-                                    color: Colors.white,
-                                    child: Column(
-                                      children: [
-                                        ListTile(
-                                          onTap: () {
-                                            Get.back();
-                                            // Get.toNamed('/user/update',
-                                            //     arguments: userPageController
-                                            //         .userList[index]);
-                                          },
-                                          title: const Text("Update"),
-                                          leading: const Icon(Icons.update),
-                                        ),
-                                        ListTile(
-                                          onTap: () {
-                                            Get.back();
-                                            // userPageController
-                                            //     .deleteUser(index);
-                                          },
-                                          title: const Text("Delete"),
-                                          leading: const Icon(Icons.delete),
-                                        ),
-                                        ListTile(
-                                          onTap: () {
-                                            Get.back();
-                                          },
-                                          title: const Text("Block"),
-                                          leading: const Icon(Icons.cancel),
-                                        ),
-                                      ],
+                                onTap: () {
+                                  Get.bottomSheet(
+                                    Container(
+                                      height: 200,
+                                      color: Colors.white,
+                                      child: Column(
+                                        children: [
+                                          ListTile(
+                                            onTap: () {
+                                              Get.back();
+                                              // Get.toNamed('/user/update',
+                                              //     arguments: userPageController
+                                              //         .userList[index]);
+                                            },
+                                            title: const Text("Update"),
+                                            leading: const Icon(Icons.update),
+                                          ),
+                                          ListTile(
+                                            onTap: () {
+                                              Get.back();
+                                              // userPageController
+                                              //     .deleteUser(index);
+                                            },
+                                            title: const Text("Delete"),
+                                            leading: const Icon(Icons.delete),
+                                          ),
+                                          ListTile(
+                                            onTap: () {
+                                              Get.back();
+                                            },
+                                            title: const Text("Block"),
+                                            leading: const Icon(Icons.cancel),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  isScrollControlled: true,
-                                  enableDrag: true,
-                                  ignoreSafeArea: false,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20),
-                                      topRight: Radius.circular(20),
+                                    isScrollControlled: true,
+                                    enableDrag: true,
+                                    ignoreSafeArea: false,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20),
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                              title: Text(
-                                  userPageController.userList[index].name ??
-                                      ''),
-                              subtitle: Text(
-                                  userPageController.userList[index].email ??
-                                      ''),
-                              leading: CircleAvatar(
-                                child: Text(userPageController
-                                        .userList[index].name
-                                        ?.substring(0, 1)
-                                        .toUpperCase() ??
-                                    ''),
-                              ),
-
-                              trailing: IconButton(
-                                onPressed: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                            title: const Text('Delete User'),
-                                            content: const Text(
-                                                'Are you sure you want to delete this user?'),
-                                            actions: [
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Get.snackbar("deleted",
-                                                        "user deleted successfully");
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text('Cancel')),
-                                              TextButton(
-                                                  onPressed: () {
-                                                    // userPageController
-                                                    //     .deleteUser(index);
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text('Confirm'))
-                                            ],
-                                          ));
+                                  );
                                 },
-                                icon: const Icon(Icons.delete),
-                                color: Colors.red,
-                              ),
+                                title: Text(
+                                    userPageController.userList[index].name ??
+                                        ''),
+                                subtitle: Text(
+                                    userPageController.userList[index].email ??
+                                        ''),
+                                leading: CircleAvatar(
+                                  child: Text(userPageController
+                                          .userList[index].name
+                                          ?.substring(0, 1)
+                                          .toUpperCase() ??
+                                      ''),
+                                ),
+                                trailing: const SizedBox(
+                                  height: 30,
+                                  width: 80,
+                                  child: Chip(
+                                    label: Text('Active'),
+                                    labelStyle: TextStyle(
+                                      color: Colors.green,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
 
-                              // trailing:
-                            );
+                                // trailing:
+                                );
                           }),
                     ],
                   );
